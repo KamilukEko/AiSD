@@ -13,3 +13,6 @@ class SortableRecord:
     
     def __str__(self):
         return f"ID: {self.id}, User Name: {self.user_name}, Timestamp: {self.printable_timestamp}"
+    
+    def to_tuple(self):
+        return (self.id, self.user_name, self.printable_timestamp)
