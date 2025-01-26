@@ -1,8 +1,7 @@
-from tinydb import TinyDB
+from tinydb import TinyDB, Query
 import random
 import string
 import os
-
 
 class DatabaseManager:
     def __init__(self):
@@ -23,3 +22,14 @@ class DatabaseManager:
 
     def get_all(self):
         return self.instance.all()
+    
+    def add_user(self, name, timestamp):
+        val = timestamp.split("/")
+        self.instance.insert({'userName' : name, 'second': int(val[5]), 'minute': int(val[4]), 'hour': int(val[3]) ,'day': int(val[2]), 'month': int(val[1]), 'year': int(val[0]) })
+    
+    def del_user(self, user_id):
+        User = Query()
+        doc_to_delete = self.instance.get(doc_id=user_id)
+        
+        if doc_to_delete:
+            self.instance.remove(doc_ids=[user_id])
